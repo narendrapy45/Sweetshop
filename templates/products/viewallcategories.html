@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Category Id</th>
+            <th>Category Name</th>
+            <th>Edit Category</th>
+            <th>Update Category</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <td>
+                    <a href="/product/editcategory/{{ category.id }}" class="btn btn-sm btn-primary rounded-0 a-btn-slide-text">
+                      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                      <span><strong>Edit</strong></span>            
+                    </a>
+                </td>
+                <td>
+                  <a href="/product/deletecategory/{{ category.id }}" class="btn btn-sm btn-danger rounded-0 a-btn-slide-text">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    <span><strong>Delete</strong></span>            
+                  </a>
+                </td>
+                
+          
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="col-md-6 ">
+  {% if categories.paginator.num_pages > 1 %}
+
+    {% include 'includes/pagination.html' with page_obj=categories %}
+
+{% endif %}
+
+</div>
+<script>
+  a.btn:hover {
+     -webkit-transform: scale(1.1);
+     -moz-transform: scale(1.1);
+     -o-transform: scale(1.1);
+ }
+ a.btn {
+     -webkit-transform: scale(0.8);
+     -moz-transform: scale(0.8);
+     -o-transform: scale(0.8);
+     -webkit-transition-duration: 0.5s;
+     -moz-transition-duration: 0.5s;
+     -o-transition-duration: 0.5s;
+ }
+</script>
+
+{% endblock %}

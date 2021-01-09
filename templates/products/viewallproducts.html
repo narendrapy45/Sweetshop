@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Product Id</th>
+            <th>Product Name</th>
+            <th>Product Category</th>
+            <th>Product Price</th>
+            <th>Product Image</th>
+            <th>Product Description</th>
+            <th>Edit Product</th>
+            <th>Update Product</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.category }}</td>
+                <td>{{ product.price}}</td>
+                <td><img src="{{ product.image.url }}" alt="img" width="50" height="50"></td>
+                <td>{{ product.desc }}</td>
+                <td>
+                    <a href="/product/editproduct/?id={{ product.id }}" class="btn btn-sm btn-primary rounded-0 a-btn-slide-text">
+                      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                      <span><strong>Edit</strong></span>            
+                    </a>
+                </td>
+                <td>
+                  <a href="/product/deleteproduct/?id={{ product.id }}" class="btn btn-sm btn-danger rounded-0 a-btn-slide-text">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    <span><strong>Delete</strong></span>            
+                  </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="col-md-6 ">
+  {% if products.paginator.num_pages > 1 %}
+
+    {% include 'includes/pagination.html' with page_obj=products %}
+
+{% endif %}
+
+</div>
+<script>
+  a.btn:hover {
+     -webkit-transform: scale(1.1);
+     -moz-transform: scale(1.1);
+     -o-transform: scale(1.1);
+ }
+ a.btn {
+     -webkit-transform: scale(0.8);
+     -moz-transform: scale(0.8);
+     -o-transform: scale(0.8);
+     -webkit-transition-duration: 0.5s;
+     -moz-transition-duration: 0.5s;
+     -o-transition-duration: 0.5s;
+ }
+</script>
+
+{% endblock %}

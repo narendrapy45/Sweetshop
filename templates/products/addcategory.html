@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+    <form action="#" method="post" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        {% include 'includes/bs4_form.html' with form=form %} 
+        <button type="submit" class="btn btn-primary">Add Category</button>
+    </form>
+{% endblock %}
+
+
