@@ -3,7 +3,7 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>Category Id</th>
+            <th>Sr No</th>
             <th>Category Name</th>
             <th>Edit Category</th>
             <th>Update Category</th>
@@ -12,7 +12,7 @@
     <tbody>
         {% for category in categories %}
             <tr>
-                <td>{{ category.id }}</td>
+                <td>{{ forloop.counter }}</td>
                 <td>{{ category.name }}</td>
                 <td>
                     <a href="/product/editcategory/{{ category.id }}" class="btn btn-sm btn-primary rounded-0 a-btn-slide-text">
