@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if user.is_authenticated %}
+        {% if user.is_superuser %}
+
+            <a href="/product/viewallproducts/">view All Products</a>
+        {% else %}
+            <a href="/product/addproduct/">Add Product</a>
+            <a href="/product/viewallproducts/">view All Products</a>
+            {% if messages %}
+                {% for msg in messages %}
+                    {{ msg }}
+                {% endfor %}
+                {% endif %}
+        {% endif %}
+        <a href="/accounts/signout/">Logout</a>
+    
+    
+    {% else %}
+        <div align="center">
+            <a href="/accounts/signup/">Register</a>
+            <a href="/accounts/signin/">Login</a>
+        </div>
+        {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+{% endblock %}
+

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="post" action='#' novalidate>
+    {% csrf_token %}
+  
+    {{ form.non_field_errors }}
+  
+    {% for hidden_field in form.hidden_fields %}
+     <div class="col-sm-4">
+        {{ hidden_field.errors }}
+        {{ hidden_field }}
+     </div>
+    {% endfor %}
+  
+    <div class="container">
+      {% for field in form.visible_fields %}
+        <div class="row">
+          <div class="col-sm-4 col-form-label"> {{ field.label_tag }}</div>
+          <div class="col-sm-8">
+            {{ field }}
+            {{ field.help_text }}
+            {% if field.errors %}
+            <ul>
+              {% for error in field.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  <div class="" style="text-align: center;"> 
+    <button type="submit" class="btn btn-primary">Signup</button>
+  </div>
+  </form>
+  {% endblock %}
