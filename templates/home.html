@@ -1,31 +1,22 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-    {% if user.is_authenticated %}
-        {% if user.is_superuser %}
+	<div class="row">
+		{% for product in products %}
+		<div class="col-md-4 mt-10 mr-15 ml-25">
+			<img class="thumbnail prodimg" src="{{product.image.url}}" style="width: 200px; height: 180px;" >
+					<div class="box-element product">
+				<h6><strong>{{product.name}}</strong></h6>
+				<hr>
 
-            <a href="/product/viewallproducts/">view All Products</a>
-        {% else %}
-            <a href="/product/addproduct/">Add Product</a>
-            <a href="/product/viewallproducts/">view All Products</a>
-            {% if messages %}
-                {% for msg in messages %}
-                    {{ msg }}
-                {% endfor %}
-                {% endif %}
-        {% endif %}
-        <a href="/accounts/signout/">Logout</a>
-    
-    
-    {% else %}
-        <div align="center">
-            <a href="/accounts/signup/">Register</a>
-            <a href="/accounts/signin/">Login</a>
-        </div>
-        {% if messages %}
-            {% for message in messages %}
-                {{ message }}
-            {% endfor %}
-        {% endif %}
-    {% endif %}
-{% endblock %}
+				<button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+				
+				<a class="btn btn-outline-success" href="#">View</a>
+				<h4 style="display: inline-block; float: right"><strong>${{product.price}}</strong></h4>
 
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+{% endblock content %}
