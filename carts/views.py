@@ -20,7 +20,7 @@ def checkout(request):
 	cartItems = data['cartItems']
 	order = data['order']
 	items = data['items']
-
+	print(items)
 	context = {'items':items, 'order':order, 'cartItems':cartItems}
 	return render(request, 'carts/checkout.html', context)
 
