@@ -5,14 +5,16 @@ import datetime
 from products.models import ProductModel
 from .models import Order,OrderItem,ShippingAddress
 from .utils import cookieCart, cartData, guestOrder
+import logging
 
 def cart(request):
-    data = cartData(request)
-    cartItems = data['cartItems']
-    order = data['order']
-    items = data['items']
-    context = {'items':items, 'order':order, 'cartItems':cartItems}
-    return render(request, 'carts/cart.html', context)
+	data = cartData(request)
+	# print(data)
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+	context = {'items':items, 'order':order, 'cartItems':cartItems}
+	return render(request, 'carts/cart.html', context)
 
 def checkout(request):
 	data = cartData(request)
@@ -20,7 +22,7 @@ def checkout(request):
 	cartItems = data['cartItems']
 	order = data['order']
 	items = data['items']
-	print(items)
+	# print('items',items)
 	context = {'items':items, 'order':order, 'cartItems':cartItems}
 	return render(request, 'carts/checkout.html', context)
 
